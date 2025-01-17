@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "LMArena Personal Leaderboard",
+  "version": "1.0",
+  "description": "Show your personal leaderboard on LMArena's",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.lmarena.ai/*", "https://lmarena.ai/*", "https://chatbot-arena.web.app/*"],
+      "js": ["content.js"]
+    }
+  ],
+   "browser_specific_settings": {
+    "gecko": {
+      "id": "me@matthieu.pw"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <style>
+  body {
+   width: 350px;
+   padding: 20px;
+   font-family: 'Segoe UI', Arial, sans-serif;
+   background-color: #f8f9fa;
+   margin: 0;
+  }
+
+  h2 {
+   color: #1a73e8;
+   margin: 0 0 20px 0;
+   text-align: center;
+   font-size: 24px;
+  }
+
+  .domain-selector {
+   text-align: center;
+   margin-bottom: 20px;
+  }
+
+  .domain-selector select {
+   padding: 8px;
+   border-radius: 4px;
+   border: 1px solid #ddd;
+  }
+
+  #leaderboard {
+   background: white;
+   border-radius: 8px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   padding: 15px;
+  }
+
+  .model-row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 8px 0;
+   padding: 12px;
+   background: #f8f9fa;
+   border-radius: 6px;
+   transition: all 0.2s ease;
+  }
+
+  .model-row:hover {
+   background: #e8f0fe;
+   transform: translateX(2px);
+  }
+
+  .model-name {
+   font-weight: 500;
+   color: #202124;
+  }
+
+  .model-stats {
+   color: #5f6368;
+   font-size: 14px;
+  }
+
+  .win-loss {
+   color: #1a73e8;
+   font-weight: 500;
+  }
+
+  .net-score {
+   display: inline-block;
+   padding: 2px 8px;
+   border-radius: 12px;
+   font-size: 12px;
+   font-weight: 500;
+   margin-left: 8px;
+  }
+
+  .positive {
+   background: #e6f4ea;
+   color: #137333;
+  }
+
+  .negative {
+   background: #fce8e6;
+   color: #c5221f;
+  }
+
+  .neutral {
+   background: #f1f3f4;
+   color: #5f6368;
+  }
+
+  .buttons {
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   margin-top: 15px;
+  }
+
+  button {
+   padding: 8px 16px;
+   border: none;
+   border-radius: 4px;
+   background: #1a73e8;
+   color: white;
+   cursor: pointer;
+  }
+
+  button:hover {
+   background: #1557b0;
+  }
+
+  input[type="file"] {
+   display: none;
+  }
+ </style>
+</head>
+
+<body>
+ <h2>Personal Leaderboard</h2>
+ <div class="domain-selector">
+  <select id="domainSelect">
+   <option value="web.lmarena.ai">web.lmarena.ai</option>
+   <option value="lmarena.ai">lmarena.ai</option>
+  </select>
+ </div>
+ <div id="leaderboard"></div>
+ <div class="buttons">
+  <button id="exportBtn">Export</button>
+  <button id="importBtn">Import</button>
+  <button id="resetBtn" style="background: #dc3545;">Reset</button>
+  <input type="file" id="fileInput" accept=".json">
+ </div>
+ <script src="popup.js"></script>
+</body>
+
+</html>
