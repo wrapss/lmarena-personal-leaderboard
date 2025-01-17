@@ -10,6 +10,11 @@ Browser extension to track and manage your personal voting history on LM Arena p
 - Reset capabilities
 - Support for Chrome and Firefox
 
+## Screenshots
+
+![Popup](screenshots/1.png)
+*Screenshot of the extension popup showing personal leaderboard statistics.*
+
 ## Project Structure
 
 ```
