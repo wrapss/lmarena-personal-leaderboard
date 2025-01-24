@@ -74,10 +74,8 @@ function updateLeaderboard(winner, loser, models) {
       ? CONFIG.domains.main
       : window.location.hostname;
   const key = `leaderboard_${domain}`;
-
   chrome.storage.local.get([key], function (result) {
     let leaderboard = result[key] || {};
-
     if (winner === "Tie") {
       leaderboard[models[0]] = leaderboard[models[0]] || { wins: 0, losses: 0 };
       leaderboard[models[1]] = leaderboard[models[1]] || { wins: 0, losses: 0 };
@@ -89,8 +87,30 @@ function updateLeaderboard(winner, loser, models) {
       leaderboard[winner].wins++;
       leaderboard[loser].losses++;
     }
-
     chrome.storage.local.set({ [key]: leaderboard });
+  });
+}
+
+function updateHistory(winner, loser, models) {
+  const domain =
+    window.location.hostname === CONFIG.domains.arena
+      ? CONFIG.domains.main
+      : window.location.hostname;
+  const key = `history_${domain}`;
+
+  chrome.storage.local.get([key], function (result) {
+    let history = result[key] || [];
+
+    const vote = {
+      date: new Date().toISOString(),
+      modelA: models[0],
+      modelB: models[1],
+      winner: winner,
+      loser: loser,
+    };
+
+    history.push(vote);
+    chrome.storage.local.set({ [key]: history });
   });
 }
 
@@ -119,7 +139,6 @@ document.addEventListener("click", function (e) {
       console.log("models", models);
       let winner = null;
       let loser = null;
-
       if (isLeftVote) {
         winner = models[0];
         loser = models[1];
@@ -133,7 +152,7 @@ document.addEventListener("click", function (e) {
         winner = "Both Bad";
         loser = "Both Bad";
       }
-
+      updateHistory(winner, loser, models);
       updateLeaderboard(winner, loser, models);
     }, CONFIG.delay);
   }

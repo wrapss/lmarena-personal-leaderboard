@@ -18,6 +18,25 @@
    font-size: 24px;
   }
 
+  .tabs {
+   display: flex;
+   margin-bottom: 20px;
+   border-bottom: 1px solid #dee2e6;
+  }
+
+ .tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #5f6368; /* Ajout de la couleur par défaut */
+}
+
+  .tab.active {
+   border-bottom: 2px solid #1a73e8;
+   color: #1a73e8;
+  }
+
   .domain-selector {
    text-align: center;
    margin-bottom: 20px;
@@ -91,6 +110,42 @@
    color: #5f6368;
   }
 
+  #history {
+   display: none;
+  }
+
+  .history-item {
+   padding: 10px;
+   margin-bottom: 10px;
+   background: white;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .history-date {
+   color: #666;
+   font-size: 12px;
+   margin-bottom: 5px;
+  }
+
+  .history-models {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+  }
+
+  .history-winner {
+   color: #137333;
+  }
+
+  .history-loser {
+   color: #c5221f;
+  }
+
+  .history-tie {
+   color: #666;
+  }
+
   .buttons {
    display: flex;
    justify-content: center;
@@ -119,19 +174,33 @@
 
 <body>
  <h2>Personal Leaderboard</h2>
- <div class="domain-selector">
-  <select id="domainSelect">
-   <option value="web.lmarena.ai">web.lmarena.ai</option>
-   <option value="lmarena.ai">lmarena.ai</option>
-  </select>
+
+ <div class="tabs">
+  <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+  <button class="tab" data-tab="history">History</button>
  </div>
- <div id="leaderboard"></div>
+
+ <div id="leaderboard">
+  <div class="domain-selector">
+   <select id="domainSelect">
+    <option value="web.lmarena.ai">web.lmarena.ai</option>
+    <option value="lmarena.ai">lmarena.ai</option>
+   </select>
+  </div>
+  <div id="leaderboardContent"></div>
+ </div>
+
+ <div id="history">
+  <div id="historyContent"></div>
+ </div>
+
  <div class="buttons">
   <button id="exportBtn">Export</button>
   <button id="importBtn">Import</button>
   <button id="resetBtn" style="background: #dc3545;">Reset</button>
   <input type="file" id="fileInput" accept=".json">
  </div>
+
  <script src="popup.js"></script>
 </body>
 
